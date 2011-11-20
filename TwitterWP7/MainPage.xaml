@@ -1,0 +1,80 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing" 
+    x:Class="TwitterWP7.MainPage"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="PnlTitle" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="TxtTitle" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="26.667" Text="Looking For Lean Startup Stuff?"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock x:Name="LblTwitter" HorizontalAlignment="Left" Height="26" Margin="0,16,0,0" TextWrapping="Wrap" Text="Twitter" VerticalAlignment="Top" Width="91"/>
+            <TextBlock x:Name="LblHashtag" Height="26" Margin="226,16,139,0" TextWrapping="Wrap" Text="Hashtag" VerticalAlignment="Top"/>
+            <TextBox Height="78" Margin="-10,38,0,0" x:Name="TxtTwitter" VerticalAlignment="Top" HorizontalAlignment="Left" Width="245" InputScope="EmailUserName" Opacity="0.8" KeyUp="EnableFindTweetButton" >
+            	<TextBox.Background>
+            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            			<GradientStop Color="Black" Offset="0"/>
+            			<GradientStop Color="White" Offset="1"/>
+            		</LinearGradientBrush>
+            	</TextBox.Background>
+            </TextBox>
+            <Button Content="Find Tweets" Height="70" HorizontalAlignment="Left" Margin="-10,107,0,0" x:Name="BtnFindTwitt" VerticalAlignment="Top" Width="245" Click="loadTweets" />
+            <TextBox x:Name="TxtHashtag" Margin="0,38,-9,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="250" Opacity="0.8" KeyUp="EnableFindHashtagButton" >
+            	<TextBox.Background>
+            		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            			<GradientStop Color="Black" Offset="0"/>
+            			<GradientStop Color="White" Offset="1"/>
+            		</LinearGradientBrush>
+            	</TextBox.Background>
+            </TextBox>
+            <Button Content="Find HashTag" Height="70" HorizontalAlignment="Right" Margin="0,107,-4,0" Name="BtnFindHashtag" VerticalAlignment="Top" Width="245" Click="loadHashtag" />
+            <ListBox Height="480" HorizontalAlignment="Left" Margin="7,210,0,0" x:Name="lstTweets" VerticalAlignment="Top" Width="441" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Height="132">
+                            <Image Source="{Binding ImageSource}" Height="73" Width="73" VerticalAlignment="Top" Margin="0,10,8,0"/>
+                            <StackPanel Width="370">
+                                <TextBlock Text="{Binding UserName}" Foreground="#FFC8AB14" FontSize="28" />
+                                <TextBlock Text="{Binding Message}" TextWrapping="Wrap" FontSize="24" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <es:RegularPolygon Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="1" InnerRadius="0.47211" Margin="0,0,-66,125" PointCount="5" Grid.Row="1" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="48"/>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
